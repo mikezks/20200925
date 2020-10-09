@@ -12,9 +12,13 @@
         <div class="card">
           <div class="header">
             <h1 class="title">{{title}}</h1>
+            <h2>{{ myNgMsg }}</h2>
           </div>
           <div class="content">
-            </div>
+            <button
+              class="btn button-default"
+              (click)="handleTitleChange()">Change Title</button>
+          </div>
         </div>
 
       </div>

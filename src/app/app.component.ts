@@ -7,4 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent  {
   title = 'Hello Angular!';
+  myNgMsg = 'Yeah, we are using Bindings! :)';
+
+  handleTitleChange(): void {
+    this.title = 'Hello World!';
+  }
 }
