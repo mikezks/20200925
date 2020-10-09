@@ -10,7 +10,7 @@ import { Flight } from '../entities/flight';
 export class FlightSearchComponent implements OnInit {
   from = 'Hamburg';
   to = 'Graz';
-  flights: Flight[];
+  flights: Flight[] = [];
   selectedFlight: Flight;
 
   constructor(private http: HttpClient) { }
