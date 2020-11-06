@@ -6,10 +6,40 @@
 
   <div class="content">
 
-      <form>
+      <form #conny="ngForm" roundtrip>
           <div class="form-group">
               <label>From:</label>
-              <input [(ngModel)]="from" name="from" class="form-control">
+              <input #cool="ngModel" [(ngModel)]="from" name="from" class="form-control" required minlength="3"
+              [city]="['Graz', 'München', 'Hamburg']">
+          </div>
+          <div
+          *ngIf="conny?.controls['from']?.hasError('minlength')"
+          class="alert alert-danger"
+          >
+          You must provide
+            {{conny?.controls['from']?.errors?.minlength?.requiredLength}} letters but you provided
+            {{conny?.controls['from']?.errors?.minlength?.actualLength}} letters.
+          </div>
+          <div
+          *ngIf="conny?.controls['from']?.hasError('required')"
+          class="alert alert-danger"
+          >
+          This field is required
+          </div>
+          <div
+          *ngIf="conny?.controls['from']?.hasError('city')"
+          class="alert alert-danger"
+          >
+          This field has no valid city
+          {{conny?.controls['from']?.errors?.city |json}}
+          </div>
+
+          <div
+          *ngIf="conny?.hasError('roundtrip')"
+          class="alert alert-danger"
+          >
+          This is a rountrip !!!
+          {{conny?.errors?.roundtrip |json}}
           </div>
           <div class="form-group">
               <label>To:</label>
@@ -18,10 +48,14 @@
 
           <div class="form-group">
           <button
-              [disabled]="!to || !from"
+              [disabled]="conny?.invalid"
               (click)="search()"
               class="btn btn-default">Search</button>
           </div>
+
+        <pre>
+            {{cool?.invalid}}
+          </pre>
       </form>
 
   </div>
