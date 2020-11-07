@@ -10,7 +10,7 @@
           <div class="form-group">
               <label>From:</label>
               <input #cool="ngModel" [(ngModel)]="from" name="from" class="form-control" required minlength="3"
-              [city]="['Graz', 'München', 'Hamburg']">
+              [city]="['Graz', 'München', 'Hamburg']" cityasync>
           </div>
           <div
           *ngIf="conny?.controls['from']?.hasError('minlength')"
@@ -33,7 +33,13 @@
           This field has no valid city
           {{conny?.controls['from']?.errors?.city |json}}
           </div>
-
+          <div
+          *ngIf="conny?.controls['from']?.hasError('cityasync')"
+          class="alert alert-danger"
+          >
+          This field has no valid cityasync
+          {{conny?.controls['from']?.errors?.cityasync |json}}
+          </div>
           <div
           *ngIf="conny?.hasError('roundtrip')"
           class="alert alert-danger"

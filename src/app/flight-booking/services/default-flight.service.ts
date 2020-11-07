@@ -7,22 +7,25 @@ import { FlightService } from './flight.service';
 
 @Injectable()
 export class DefaultFlightService implements FlightService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   find(from: string, to: string): Observable<Flight[]> {
     const url = 'http://www.angular.at/api/flight';
 
-    const params = new HttpParams()
-      .set('from', from)
-      .set('to', to);
+    const params = new HttpParams().set('from', from).set('to', to);
 
-    const headers = new HttpHeaders()
-      .set('Accept', 'application/json');
+    const headers = new HttpHeaders().set('Accept', 'application/json');
 
-    return this.http.get<Flight[]>(url, { headers, params })
-      .pipe(
-        tap(flights => console.log('Service is used', flights))
-      );
+    return this.http
+      .get<Flight[]>(url, { headers, params })
+      .pipe(tap((flights) => console.log('Service is used', flights)));
+  }
+
+  load(id: number): Observable<Flight> {
+    const url = `http://www.angular.at/api/flight/${id}`;
+
+    const headers = new HttpHeaders().set('Accept', 'application/json');
+
+    return this.http.get<Flight>(url, { headers });
   }
 }
