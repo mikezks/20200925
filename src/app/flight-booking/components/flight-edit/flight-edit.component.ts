@@ -48,16 +48,16 @@ export class FlightEditComponent implements OnInit, OnDestroy {
     this.flightService.load(1).subscribe((f) => this.editForm.patchValue(f));
     this.formValueChangeSubscription = this.editForm.controls.from.valueChanges.subscribe(
       (value: string) => {
-        console.log('From value changed', value);
+        // console.log('From value changed', value);
       }
     );
   }
 
   save(): void {
-    console.log('From', this.editForm.controls?.from);
-    console.log('To', this.editForm.controls?.to);
-    console.log('Date', this.editForm.controls?.date);
-    console.log('Id', this.editForm.controls?.id);
+    //console.log('From', this.editForm.controls?.from);
+    //console.log('To', this.editForm.controls?.to);
+    // console.log('Date', this.editForm.controls?.date);
+    // console.log('Id', this.editForm.controls?.id);
   }
 
   ngOnDestroy(): void {

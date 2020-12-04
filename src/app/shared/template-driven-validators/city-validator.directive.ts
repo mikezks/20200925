@@ -20,7 +20,7 @@ export class CityValidtorDirective implements Validator {
   @Input() city: string[] = [];
   constructor() {}
   validate(control: AbstractControl): ValidationErrors {
-    console.log(this.city);
+    // console.log(this.city);
     if (this.city.indexOf(control.value) > -1) {
       return {};
     }

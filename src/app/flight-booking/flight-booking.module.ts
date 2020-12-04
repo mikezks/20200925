@@ -7,18 +7,21 @@ import { FlightEditComponent } from './components/flight-edit/flight-edit.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { PassangerSearchComponent } from './passanger-search/passanger-search.component';
 import { FlightBookingRoutesModule } from './flight-booking-routes.module';
+import { TypeaheadComponent } from './typeahead/typeahead.component';
 @NgModule({
   declarations: [
     FlightSearchComponent,
     FlightCardComponent,
     FlightEditComponent,
     PassangerSearchComponent,
+    TypeaheadComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
     FlightBookingRoutesModule,
+    ReactiveFormsModule,
   ],
   exports: [FlightSearchComponent, FlightEditComponent],
 })
