@@ -7,6 +7,7 @@ import {
   cityValidator,
   cityValidatorWithParams,
 } from '../../../shared/reactive-validators/reactive-valitators';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-flight-edit',
   templateUrl: './flight-edit.component.html',
@@ -15,11 +16,15 @@ import {
 export class FlightEditComponent implements OnInit, OnDestroy {
   editForm: FormGroup;
   formValueChangeSubscription: Subscription;
-  constructor(private fb: FormBuilder, private flightService: FlightService) {}
+  constructor(
+    private fb: FormBuilder,
+    private flightService: FlightService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.editForm = this.fb.group({
-      id: [1],
+      id: [],
       from: [
         null,
         [
@@ -32,6 +37,14 @@ export class FlightEditComponent implements OnInit, OnDestroy {
       to: [],
       date: [],
     });
+
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      this.flightService.load(+id).subscribe((result) => {
+        this.editForm.patchValue(result);
+      });
+    });
+
     this.flightService.load(1).subscribe((f) => this.editForm.patchValue(f));
     this.formValueChangeSubscription = this.editForm.controls.from.valueChanges.subscribe(
       (value: string) => {
